@@ -10,7 +10,10 @@ const post = new Post({
   tags: ['sample', 'blog', 'mongoose', 'mongodb'],
 })
 
-await post.save()
+const createdPost = await post.save()
+await Post.findByIdAndUpdate(createdPost._id, {
+  $set: { title: 'One more post again!' },
+})
 
 const posts = await Post.find()
 console.log(posts)
