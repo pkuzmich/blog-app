@@ -1,11 +1,24 @@
-import Post from './components/Posts'
+import { PostList } from './components/PostList'
+
+const posts = [
+  {
+    title: 'Learning Redux',
+    author: 'John Smith',
+    tags: ['redux'],
+  },
+  {
+    title: 'Learn React Hooks',
+    author: 'John Smith',
+    tags: ['react'],
+  },
+  {
+    title: 'Full-Stack React Projects',
+    author: 'John Smith',
+    tags: ['react', 'nodejs'],
+  },
+  { title: 'Guide to TypeScript' },
+]
 
 export function App() {
-  return (
-    <Post
-      title='Hello World'
-      author='John Doe'
-      contents='This is a sample blog post.'
-    />
-  )
+  return <PostList posts={posts} />
 }
