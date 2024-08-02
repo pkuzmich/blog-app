@@ -1,13 +1,19 @@
+import { Fragment } from 'react'
 import { PostList } from './components/PostList'
+import { CreatePost } from './components/CreatePost'
+import { PostFilter } from './components/PostFilter'
+import { PostSorting } from './components/PostSorting'
 
 const posts = [
   {
     title: 'Learning Redux',
+    contents: 'This is a sample blog post.',
     author: 'John Smith',
     tags: ['redux'],
   },
   {
     title: 'Learn React Hooks',
+    contents: "Let's become full-stack developers!",
     author: 'John Smith',
     tags: ['react'],
   },
@@ -20,5 +26,16 @@ const posts = [
 ]
 
 export function App() {
-  return <PostList posts={posts} />
+  return (
+    <Fragment style={{ padding: 8 }}>
+      <CreatePost />
+      <hr />
+      Filter by:
+      <PostFilter field='author' />
+      <br />
+      <PostSorting fields={['createdAt', 'updatedAt']} />
+      <hr />
+      <PostList posts={posts} />
+    </Fragment>
+  )
 }
