@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { PostList } from './components/PostList'
 import { CreatePost } from './components/CreatePost'
@@ -7,21 +7,35 @@ import { PostSorting } from './components/PostSorting'
 import { getPosts } from './api/posts.js'
 
 export function Blog() {
+  const [author, setAuthor] = useState('')
+  const [sortBy, setSortBy] = useState('createdAt')
+  const [sortOrder, setSortOrder] = useState('descending')
+
   const postsQuery = useQuery({
-    queryKey: ['posts'],
-    queryFn: () => getPosts(),
+    queryKey: ['posts', { author, sortBy, sortOrder }],
+    queryFn: () => getPosts({ author, sortBy, sortOrder }),
   })
 
   const posts = postsQuery.data ?? []
+
+  const handleFilterChange = (value) => setAuthor(value)
+  const handleSortChange = (value) => setSortBy(value)
+  const handleSortOrderChange = (value) => setSortOrder(value)
 
   return (
     <Fragment style={{ padding: 8 }}>
       <CreatePost />
       <hr />
       Filter by:
-      <PostFilter field='author' />
+      <PostFilter field='author' onChange={handleFilterChange} value={author} />
       <br />
-      <PostSorting fields={['createdAt', 'updatedAt']} />
+      <PostSorting
+        fields={['createdAt', 'updatedAt']}
+        onChange={handleSortChange}
+        value={sortBy}
+        orderValue={sortOrder}
+        onOrderChange={handleSortOrderChange}
+      />
       <hr />
       <PostList posts={posts} />
     </Fragment>
