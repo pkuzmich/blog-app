@@ -47,7 +47,7 @@ export function postsRoutes(app) {
   })
 
   // Define an API route to CREATE a post
-  app.post('/api/vs/posts', async (req, res) => {
+  app.post('/api/v1/posts', async (req, res) => {
     try {
       const post = await createPost(req.body)
       return res.json(post)

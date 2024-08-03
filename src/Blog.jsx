@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { PostList } from './components/PostList'
 import { CreatePost } from './components/CreatePost'
@@ -23,7 +23,7 @@ export function Blog() {
   const handleSortOrderChange = (value) => setSortOrder(value)
 
   return (
-    <Fragment style={{ padding: 8 }}>
+    <div style={{ padding: 8 }}>
       <CreatePost />
       <hr />
       Filter by:
@@ -38,6 +38,6 @@ export function Blog() {
       />
       <hr />
       <PostList posts={posts} />
-    </Fragment>
+    </div>
   )
 }
