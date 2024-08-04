@@ -26,3 +26,15 @@ export const deletePost = async (postId) => {
     throw new Error('Failed to delete post')
   }
 }
+
+export const updatePost = async (postId, post) => {
+  const result = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(post),
+  })
+
+  return await result.json()
+}
