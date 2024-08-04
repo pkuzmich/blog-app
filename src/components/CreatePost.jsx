@@ -13,6 +13,9 @@ export function CreatePost() {
     mutationFn: () => createPost({ title, author, content }),
     onSuccess: () => {
       queryClient.invalidateQueries(['posts'])
+      setTitle('')
+      setAuthor('')
+      setContent('')
     },
   })
 
