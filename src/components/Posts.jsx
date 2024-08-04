@@ -1,9 +1,13 @@
 import PropTypes from 'prop-types'
+import { DeletePost } from './DeletePost'
 
-export default function Post({ title, author, contents }) {
+export default function Post({ _id, title, author, contents }) {
   return (
     <article>
-      <h3>{title}</h3>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <h3>{title}</h3>
+        <DeletePost postId={_id} />
+      </div>
       <div>{contents}</div>
       {author && (
         <em>
@@ -15,6 +19,7 @@ export default function Post({ title, author, contents }) {
 }
 
 Post.propTypes = {
+  _id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string,
   contents: PropTypes.string,

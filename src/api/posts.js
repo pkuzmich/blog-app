@@ -16,3 +16,13 @@ export const createPost = async (post) => {
 
   return await result.json()
 }
+
+export const deletePost = async (postId) => {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${postId}`, {
+    method: 'DELETE',
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to delete post')
+  }
+}
