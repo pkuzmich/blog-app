@@ -23,7 +23,7 @@ export const deletePost = async (postId) => {
   })
 
   if (!response.ok) {
-    throw new Error('Failed to delete post')
+    throw new Error('Error: Failed to delete post')
   }
 }
 
