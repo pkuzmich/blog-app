@@ -59,7 +59,7 @@ export function CreatePost() {
           onChange={handleContentChange}
         ></textarea>
       </div>
-      <button type='submit' disabled={!title || createPostMutation.isPending}>
+      <button type='submit' disabled={createPostMutation.isPending}>
         {createPostMutation.isPending ? 'Creating...' : 'Create'}
       </button>
       {createPostMutation.isSuccess ? (
